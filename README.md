@@ -2,8 +2,6 @@
 
 Run NixOS on an Azure Gen 2 VM
 
----
-
 ## Preparation
 
 1. Set your username in the `flake.nix` file
