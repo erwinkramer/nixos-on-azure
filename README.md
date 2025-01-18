@@ -1,6 +1,6 @@
 # NixOS on Azure
 
-Run NixOS on an Azure Gen 2 VM
+Run NixOS, with [Arion](https://docs.hercules-ci.com/arion/), on an Azure Gen 2 VM.
 
 ## Preparation
 
