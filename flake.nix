@@ -1,7 +1,13 @@
 {
-  inputs.nixos.url = "github:nixos/nixpkgs/nixos-24.05";
+  inputs = {
+    nixos.url = "github:NixOS/nixpkgs/nixos-24.05";
+    arion = {
+      url = "github:hercules-ci/arion";
+      inputs.nixpkgs.follows = "nixos";
+    };
+  };
 
-  outputs = { nixos, ... }:
+  outputs = { nixos, arion, ... }:
     let
       username = "guanchen";
       system = "x86_64-linux";
@@ -14,7 +20,9 @@
             inherit pkgs system;
 
             modules = [
+              arion.nixosModules.arion
               ./image.nix
+              (import ./arion.nix)
               (import ./common.nix { inherit username; })
             ];
           };

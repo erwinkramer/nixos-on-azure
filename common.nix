@@ -16,6 +16,13 @@
     fsType = "vfat";
   };
 
+  services.resolved = {
+    # Disable local DNS stub listener on 127.0.0.53
+    extraConfig = ''
+      DNSStubListener=no
+    '';
+  };
+
   virtualisation.azure.agent.enable = true;
   services.cloud-init.enable = true;
   systemd.services.cloud-config.serviceConfig = {
@@ -40,16 +47,19 @@
     enable = true;
     wheelNeedsPassword = false;
   };
-
+  
   environment.systemPackages = with pkgs; [
     curl
     git
-    vim
   ];
 
   nix.settings = {
     warn-dirty = false;
     experimental-features = [ "nix-command" "flakes" ];
     trusted-users = [ username ];
+  };
+
+   networking.firewall = {
+    enable = false;
   };
 }

@@ -173,3 +173,7 @@ az vm create                           \
   --storage-sku "Premium_LRS"          \
   --public-ip-sku Standard             \
   --ssh-key-values @~/.ssh/id_rsa.pub
+
+# opening dns port
+az vm open-port -g "${resource_group}" -n "${vm_name}" --port 53 --priority 107
+az vm open-port -g "${resource_group}" -n "${vm_name}" --port 8080 --priority 108
